@@ -167,14 +167,14 @@ Use `left_outer_sep` and `right_outer_sep` to move the diagonal line
 horizontally (its start and its end, respectively):
 
 ```typ
-#bdiagbox(
+#tdiagbox(
     width: 10em,
     inset: 0pt, box_stroke: 1pt,  // standalone
     left_outer_sep: 1.5em, right_outer_sep: 4em
     )[Part A][Part B]
 ```
 
-#bdiagbox(
+#tdiagbox(
     width: 10em,
     inset: 0pt, box_stroke: 1pt,
     left_outer_sep: 1.5em, right_outer_sep: 4em
