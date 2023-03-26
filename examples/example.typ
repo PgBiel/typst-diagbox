@@ -21,7 +21,8 @@ in that column:
     [*Character B*], [No], [No]
     )
 
-Note that this fails when it is not the largest cell:
+\ 
+Note that this fails when the diagbox is not the largest cell:
 
 ```typ
 #table(
@@ -40,7 +41,7 @@ Note that this fails when it is not the largest cell:
     [*Long Long Long Character A*], [Yes], [No],
     [*Long Long Long Character B*], [No], [No]
     )
-
+\ 
 Instead, you will have to specify sizes manually in such cases:
 
 ```typ
@@ -67,16 +68,16 @@ Instead, you will have to specify sizes manually in such cases:
 
 You can also have diagonal lines pointing in the opposite direction, using `tdiagbox`:
 
-```typ
-#let third_column_size = 5em;
-#table(
-    columns: (auto, auto, third_column_size),
-    align: horizon + center,
-    bdiagbox[Names][Properties], [*Can Walk*], [*Can Run*],
-    [*Character A*], [Yes], [No],
-    [*Character B*], [No], tdiagbox(width: third_column_size)[A][B]
-    )
-```
+#block(breakable: false)[```typ
+    #let third_column_size = 5em;
+    #table(
+        columns: (auto, auto, third_column_size),
+        align: horizon + center,
+        bdiagbox[Names][Properties], [*Can Walk*], [*Can Run*],
+        [*Character A*], [Yes], [No],
+        [*Character B*], [No], tdiagbox(width: third_column_size)[A][B]
+        )
+```]
 
 #[
     #let third_column_size = 5em;
@@ -90,7 +91,7 @@ You can also have diagonal lines pointing in the opposite direction, using `tdia
 ]
 
 
-If your table has a custom `inset` property, make sure to pass it along:
+If your table has a custom `inset` (inner padding) property, make sure to pass it along:
 
 ```typ
 #let third_column_size = 5em;
@@ -118,7 +119,7 @@ If your table has a custom `inset` property, make sure to pass it along:
         )
 ]
 
-You may specify a standalone diagbox with `inset: 0pt`
+You may specify a standalone (table-less) diagbox with `inset: 0pt`
 and `box_stroke: 1pt`:
 
 ```typ
@@ -180,6 +181,6 @@ horizontally (its start and its end, respectively):
     )[Part A][Part B]
 
 Also note that the box total width is calculated with
-`width + 2*inset`; you may specify `total_width` to override that.
+`width - 2*inset`; you may specify `total_width` to override that.
 (But you will generally want to specify just `width`, as it corresponds
-directly with the width of the table column the diagbox is in.)
+directly to the width of the table column the diagbox is in.)
