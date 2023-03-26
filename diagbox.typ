@@ -36,7 +36,7 @@
   total_width: none,
   left_sep: 0pt, right_sep: 0pt,
   left_outer_sep: 0pt, right_outer_sep: 0pt,
-  ) = style(styles => {
+) = style(styles => {
   let left_measure = measure(text_left, styles)
   let right_measure = measure(text_right, styles)
 
@@ -84,18 +84,14 @@
   total_width: none,
   left_sep: 0pt, right_sep: 0pt,
   left_outer_sep: 0pt, right_outer_sep: 0pt,
-  ) = style(styles => {
+) = style(styles => {
   let left_measure = measure(text_left, styles)
   let right_measure = measure(text_right, styles)
 
   let text_pad = if text_pad == none {
-    if inset == 0pt {
-      7pt  // give a reasonable default padding
-    } else {
-      // some adjusting; sum 3pt for the base case (5pt)
-      // for larger insets, it isn't very relevant
-      -2*inset/3 + 3pt
-    }
+    // some adjusting; sum 3pt for the base case (5pt)
+    // for larger insets, it isn't very relevant
+    -2*inset/3 + 3pt
   } else {
     text_pad
   }
