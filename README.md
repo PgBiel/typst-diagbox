@@ -1,5 +1,5 @@
 # typst-diagbox
-A library for diagonal line boxes in Typst tables; a.k.a.,
+A library for diagonal line dividers in Typst tables; a.k.a.,
 table cells with a diagonal line dividing them.
 
 ## Usage
