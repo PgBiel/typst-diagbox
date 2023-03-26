@@ -4,8 +4,8 @@
  *
  * 'text_left' is the text that appears at the bottom left;
  * 'text_right', at the top right;
- * 'width' is the inner-width of the box, not considering table inset (padding) - specify the table's
- * column width in this option;
+ * 'width' is the total width the diag box should span. Specify the table's column width
+ * in this option;
  * 'inset' is the inset (inner cell padding) of the table - defaults to 5pt (just like tables do). Set
  * this to 0pt if not inside a table;
  * 'text_pad' is the general inner padding applied to text, which makes it move more 'inside'. It is used,
@@ -18,9 +18,11 @@
  * `yellow + 2pt`, `blue`, `3pt` etc. Defaults to `1pt`.
  *
  * Additional options:
- * 'total_width' overrides width calculation entirely. The default formula for total box width
- * is 'width - 2*inset', if column width is specified; otherwise, it simply measures the width
- * of the given texts: left + 2*right.
+ * 'inner_width' overrides width calculation of the inner box (the width of the diagbox,
+ * not considering the table's 'inset' padding). The default formula for inner width is
+ * 'width - 2*inset', if column width is specified; otherwise, it simply measures the width
+ * of the given texts: '2*calc.max(left, right)'. You shouldn't generally need to change this
+ * option.
  * 'left_sep', 'right_sep' define the distance of the bottom left and top right texts to their nearest
  * respective vertical borders (they move those texts horizontally, away from the nearest border) -
  * they default to 0pt, and may be negative to move in the opposite direction;
@@ -33,7 +35,7 @@
   width: none, height: none,
   inset: 5pt, text_pad: none,
   box_stroke: none, line_stroke: 1pt,
-  total_width: none,
+  inner_width: none,
   left_sep: 0pt, right_sep: 0pt,
   left_outer_sep: 0pt, right_outer_sep: 0pt,
 ) = style(styles => {
@@ -54,18 +56,18 @@
     2*(left_measure.height + right_measure.height)
   }
 
-  let total_width = if total_width != none {
-    total_width
+  let inner_width = if inner_width != none {
+    inner_width
   } else if width != none {
     width - 2*inset
   } else {
     2*calc.max(left_measure.width, right_measure.width)
   }
   
-  box(width: total_width, height: height, stroke: box_stroke)[
+  box(width: inner_width, height: height, stroke: box_stroke)[
     #show line: place.with(top + left)
     #place(top + right, move(dx: -right_sep - text_pad, dy: text_pad, text_right))
-    #line(start: (left_outer_sep - inset, -inset), end: (total_width + inset - right_outer_sep, height + inset), stroke: line_stroke)
+    #line(start: (left_outer_sep - inset, -inset), end: (inner_width + inset - right_outer_sep, height + inset), stroke: line_stroke)
     #place(bottom + left, move(dx: left_sep + text_pad, dy: -text_pad, text_left))
   ]
 })
@@ -81,7 +83,7 @@
   width: none, height: none,
   inset: 5pt, text_pad: none,
   box_stroke: none, line_stroke: 1pt,
-  total_width: none,
+  inner_width: none,
   left_sep: 0pt, right_sep: 0pt,
   left_outer_sep: 0pt, right_outer_sep: 0pt,
 ) = style(styles => {
@@ -102,18 +104,18 @@
     2*(left_measure.height + right_measure.height)
   }
 
-  let total_width = if total_width != none {
-    total_width
+  let inner_width = if inner_width != none {
+    inner_width
   } else if width != none {
     width - 2*inset
   } else {
     2*calc.max(left_measure.width, right_measure.width)
   }
 
-  box(width: total_width, height: height, stroke: box_stroke)[
+  box(width: inner_width, height: height, stroke: box_stroke)[
     #show line: place.with(top + left)
     #place(top + left, move(dx: left_sep + text_pad, dy: text_pad, text_left))
-    #line(start: (left_outer_sep - inset, height + inset), end: (total_width + inset - right_outer_sep, -inset), stroke: line_stroke)
+    #line(start: (left_outer_sep - inset, height + inset), end: (inner_width + inset - right_outer_sep, -inset), stroke: line_stroke)
     #place(bottom + right, move(dx: -right_sep - text_pad, dy: -text_pad, text_right))
   ]
 })

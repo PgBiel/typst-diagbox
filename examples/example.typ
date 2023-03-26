@@ -180,7 +180,23 @@ horizontally (its start and its end, respectively):
     left_outer_sep: 1.5em, right_outer_sep: 4em
     )[Part A][Part B]
 
-Also note that the box total width is calculated with
-`width - 2*inset`; you may specify `total_width` to override that.
+Also note that the box's inner width (that is, total width minus
+inset padding) is calculated with `width - 2*inset`; you may specify
+the `inner_width` parameter to override that.
 (But you will generally want to specify just `width`, as it corresponds
 directly to the width of the table column the diagbox is in.)
+
+You can also use `height` if you want to define a custom, fixed height
+for your box:
+
+```typ
+#tdiagbox(
+    width: 10em, height: 5em,
+    inset: 0pt, box_stroke: 1pt,  // standalone
+    )[Part A][Part B]
+```
+
+#tdiagbox(
+    width: 10em, height: 5em,
+    inset: 0pt, box_stroke: 1pt,  // standalone
+    )[Part A][Part B]
