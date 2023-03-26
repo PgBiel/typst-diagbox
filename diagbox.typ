@@ -8,9 +8,10 @@
  * column width in this option;
  * 'inset' is the inset (inner cell padding) of the table - defaults to 5pt (just like tables do). Set
  * this to 0pt if not inside a table;
- * 'text_pad' is an optional general padding option to apply to text, to move it more 'inside'. By default,
- * it is set to 7pt if inset is null (in order to make it more visually appealing), and 0pt otherwise
- * (when inset isn't zero, in order to make it visually consistent with the table).
+ * 'text_pad' is the general inner padding applied to text, which makes it move more 'inside'. It is used,
+ * with negative values, to 'counter' a table's inner padding (inset). By default, it follows the
+ * formula '-2 * inset/3 + 3pt', which covers both low insets (with the 3pt) and
+ * high insets (due to '-2 * inset/3'). Setting this option shouldn't normally be necessary.
  * 'box_stroke' optionally gives a border to the box (e.g., if outside a table) - defaults to 'none'
  * (uses the table's cell rendering), but you may write, e.g., `teal + 1pt`, `yellow`, `3pt` etc.
  * 'line_stroke' optionally controls the diagonal line's color and stroke size, with, for example,
