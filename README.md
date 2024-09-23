@@ -41,6 +41,10 @@ a line going from `(-inset, -inset)` to
 (where `width` is the column's total width, which the diagbox
 should fully occupy).
 
+## License
+
+Licensed under MIT or Apache-2.0, at your option.
+
 This is why, if you place a diagbox outside of a table
 without specifying `inset: 0pt`, with `box_stroke: 1pt`, you will
 notice that the line "overflows" the box - this is necessary to
