@@ -38,9 +38,9 @@
   inner_width: none,
   left_sep: 0pt, right_sep: 0pt,
   left_outer_sep: 0pt, right_outer_sep: 0pt,
-) = style(styles => {
-  let left_measure = measure(text_left, styles)
-  let right_measure = measure(text_right, styles)
+) = context {
+  let left_measure = measure(text_left)
+  let right_measure = measure(text_right)
 
   let text_pad = if text_pad == none {
     // some adjusting; sum 3pt for the base case (5pt)
@@ -70,7 +70,7 @@
     #line(start: (left_outer_sep - inset, -inset), end: (inner_width + inset - right_outer_sep, height + inset), stroke: line_stroke)
     #place(bottom + left, move(dx: left_sep + text_pad, dy: -text_pad, text_left))
   ]
-})
+}
 
 /**
  * Same as 'bdiagbox', but with the line going from bottom left to top right. Thus,
@@ -86,9 +86,9 @@
   inner_width: none,
   left_sep: 0pt, right_sep: 0pt,
   left_outer_sep: 0pt, right_outer_sep: 0pt,
-) = style(styles => {
-  let left_measure = measure(text_left, styles)
-  let right_measure = measure(text_right, styles)
+) = context {
+  let left_measure = measure(text_left)
+  let right_measure = measure(text_right)
 
   let text_pad = if text_pad == none {
     // some adjusting; sum 3pt for the base case (5pt)
@@ -118,6 +118,6 @@
     #line(start: (left_outer_sep - inset, height + inset), end: (inner_width + inset - right_outer_sep, -inset), stroke: line_stroke)
     #place(bottom + right, move(dx: -right_sep - text_pad, dy: -text_pad, text_right))
   ]
-})
+}
 
 // TODO: Add function for two diagonal lines (for a third text option, in the middle).
